@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In Form</title>
+</head>
+<body>
+    <!--Structure-->
+    <form id="form" action="/" method="GET">
+        <div id="error"></div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <label for="password2">Password again:</label>
+            <input type="password" name="password2" id="passwordmatch">
+        </div>
+        <button type="submit">Log in</button>
+    </form>
+    <script>
+        const name = document.getElementById('name');
+        const password = document.getElementById('password');
+        const passwordmatch = document.getElementById('passwordmatch');
+        const form = document.getElementById('form');
+        const errorElement = document.getElementById('error');
+        
+        form.addEventListener('submit', (e) =>{
+            let messages = []
+            if (name.value === '' || name.value === null){
+                messages.push('Name is required!');
+
+            }
+            if(password.length < 6){
+                messages.push('Password must be longer!');
+            }
+            if(password != passwordmatch){
+                messages.push('Password does not match!');
+            }
+            if(messages.length > 0){
+                e.preventDefault()
+                errorElement.innerText = messages.join(',')
+            }
+            else{
+                alert('You can enter!');
+            }
+        })
+    </script>
+</body>
+</html>
